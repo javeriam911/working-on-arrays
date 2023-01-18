@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <fieldset>
+        <div class="container"><label> Name of student :</label><input id="name" type="text"></div><br>
+        <div class="container"><label> Fathers name :</label> <input id="Fname" type="text"></div><br>
+        <div class="container"><label>roll number :</label> <input id="roll" type="number"></div><br>
+
+        <div><button onclick="submit()">register </button></div><br>
+        <div><input type="number" id="search"></div>
+        <button onclick="search()"> search </button>
+    </fieldset>
+</body>
+<script>
+    let name = document.getElementById("name");
+    let Fname = document.getElementById("Fname");
+    let roll = document.getElementById("roll");
+    let savedInfo = []
+
+    function submit() {
+        if (name.value == "" || Fname.value == "" || roll.value == "") {
+
+            alert("please enter your info")
+            return
+        }
+        let user_info = { name: name.value, Fname: Fname.value, roll: roll.value }
+        console.log(user_info);
+
+        console.log(user_info.roll, user_info.name)
+
+
+        for (let i = 0; i < savedInfo.length; i++) {
+            console.log(i)
+            if (user_info.roll === savedInfo[i].roll) {
+                alert(" student already exists")
+                name.value = "";
+                Fname.value = "";
+                roll.value = "";
+                return
+            }
+            else {
+
+                alert("registered")
+                name.value = "";
+                Fname.value = "";
+                roll.value = "";
+            }
+
+
+        }
+        savedInfo.push(user_info)
+
+            ; console.log(savedInfo)
+            name.value = "";
+                Fname.value = "";
+                roll.value = "";
+ }
+        let search_bar = document.getElementById("search");
+    function search() {
+        search_bar.value
+
+        console.log(search_bar.value)
+        for (let i = 0; i < savedInfo.length; i++) {
+            if (search_bar.value === savedInfo[i].roll) {
+        console.log(search_bar.value + "found")
+                alert("found")
+                return
+        console.log(search_bar.value + "not found")
+            } else { alert("not found")
+            return }
+        }
+        search_bar.value = ""
+    }
+
+</script>
+
+</html>
