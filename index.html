@@ -6,17 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .container {
+            text-align: center;
+        }
+
+        ;
+
+        #result {
+            border: 5px solid black;
+
+        }
+    </style>
 </head>
 
 <body>
-    <fieldset>
-        <div class="container"><label> Name of student :</label><input id="name" type="text"></div><br>
-        <div class="container"><label> Fathers name :</label> <input id="Fname" type="text"></div><br>
-        <div class="container"><label>roll number :</label> <input id="roll" type="number"></div><br>
+    <fieldset class="container">
+        <fieldset>
+            <div class="container"><label> Name of student :</label><input id="name" type="text"></div><br>
+            <div class="container"><label> Fathers name :</label> <input id="Fname" type="text"></div><br>
+            <div class="container"><label>roll number :</label> <input id="roll" type="number"></div><br>
+            <div><button onclick="submit()">register </button></div><br>
+            <div> <label> image url :</label><input type="url"></div><br>
+            <div><input type="number" id="search"></div><br>
+            <button onclick="search()"> search </button> <br><br>
+        </fieldset>
+        <fieldset>
+            <div>
+                <h3 id="result"></h3>
+            </div>
 
-        <div><button onclick="submit()">register </button></div><br>
-        <div><input type="number" id="search"></div>
-        <button onclick="search()"> search </button>
+        </fieldset>
     </fieldset>
 </body>
 <script>
@@ -34,52 +54,67 @@
         let user_info = { name: name.value, Fname: Fname.value, roll: roll.value }
         console.log(user_info);
 
-        console.log(user_info.roll, user_info.name)
 
 
         for (let i = 0; i < savedInfo.length; i++) {
             console.log(i)
             if (user_info.roll === savedInfo[i].roll) {
+                console.log("student already exists")
                 alert(" student already exists")
                 name.value = "";
                 Fname.value = "";
                 roll.value = "";
                 return
             }
-            else {
 
-                alert("registered")
-                name.value = "";
-                Fname.value = "";
-                roll.value = "";
-            }
+            else { alert("registered"); console.log("registered") }
 
 
         }
-        savedInfo.push(user_info)
+        savedInfo.push(user_info);
+        name.value = "";
+        Fname.value = "";
+        roll.value = "";
+        ; console.log(savedInfo);
+        console.log(savedInfo.length);
 
-            ; console.log(savedInfo)
-            name.value = "";
-                Fname.value = "";
-                roll.value = "";
- }
-        let search_bar = document.getElementById("search");
+        name.value = "";
+        Fname.value = "";
+        roll.value = "";
+
+    }
+
+    let result = document.getElementById("result");
+    let search_bar = document.getElementById("search");
     function search() {
         search_bar.value
-
         console.log(search_bar.value)
         for (let i = 0; i < savedInfo.length; i++) {
             if (search_bar.value === savedInfo[i].roll) {
-        console.log(search_bar.value + "found")
-                alert("found")
+                console.log(search_bar.value + " found", savedInfo[i].name)
+                alert("found");
+                result.innerHTML = `<i> Name  :  ${savedInfo[i].name}<br>Father name : ${savedInfo[i].Fname} <br> Roll no : ${savedInfo[i].roll}</i>`
                 return
-        console.log(search_bar.value + "not found")
-            } else { alert("not found")
-            return }
+            }
+            else {
+                console.log(search_bar.value + " not found")
+                alert("not found")
+                result.innerHTML = ` Not Found `
+                return
+            }
         }
         search_bar.value = ""
+        console.log(result.innerHTML)
+
+
+        console.log(result)
+        if (search() == true) {
+            result.innerHTML = "search_bar.value"
+        } else {
+            result.innerHTML === "not found"
+        }
     }
 
 </script>
 
-</html>
+</html> `
