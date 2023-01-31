@@ -24,7 +24,7 @@
     <fieldset class="container">
         <fieldset>
             <div class="container"><label> Name of student :</label><input id="name" type="text"></div><br>
-            <div class="container"><label> Fathers name :</label> <input id="Fname" type="text"></div><br>
+            <div class="container"><label> Father's name :</label> <input id="Fname" type="text"></div><br>
             <div class="container"><label>roll number :</label> <input id="roll" type="number"></div><br>
             <div> <label> image url :</label><input type="url" id="url"></div><br>
 
@@ -34,7 +34,10 @@
             <div>
                 <div> <label> enter roll no :</label><input type="number" id="search"></div><br>
                 <button onclick="search()"> search </button> <br><br>
-                <h3 id="result"></h3>
+
+                <img src="" id="img">
+                <h3 id="result">
+                </h3>
             </div>
 
         </fieldset>
@@ -49,7 +52,7 @@
     let savedInfo = []
 
     function submit() {
-        if (name.value == "" || Fname.value == "" || roll.value == "") {
+        if (name.value == "" || Fname.value == "" || roll.value == "" || url.value == "") {
 
             alert("please enter your info")
             return
@@ -87,11 +90,14 @@
         name.value = "";
         Fname.value = "";
         roll.value = "";
+        url.value = ""
 
     }
 
     let result = document.getElementById("result");
     let search_bar = document.getElementById("search");
+    let img = document.getElementById("img");
+    console.log(img)
     function search() {
         search_bar.value
         console.log(search_bar.value)
@@ -99,7 +105,11 @@
             if (search_bar.value === savedInfo[i].roll) {
                 console.log(search_bar.value + " found", savedInfo[i].name)
                 alert("found");
-                result.innerHTML = `<i>   ${savedInfo[i].url} <br>Name  :  ${savedInfo[i].name}<br>Father name : ${savedInfo[i].Fname} <br> Roll no : ${savedInfo[i].roll}</i>`
+                img.src = savedInfo[i].url;
+                img.style.height = "50px";
+                img.style.width = "25px";
+                console.log(img.src);
+                result.innerHTML = `Name : ${savedInfo[i].name}<br>Father's name : ${savedInfo[i].Fname} <br> Roll no : ${savedInfo[i].roll}</i>`
                 return
             }
             else {
